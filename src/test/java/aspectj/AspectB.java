@@ -9,13 +9,13 @@ import org.aspectj.lang.annotation.Pointcut;
 @Aspect
 public class AspectB {
 
-    @Pointcut("if()")
-    public static boolean useAspect()
-    {
-        return NewTest.isUseAspect();
-    }
+//    @Pointcut("if()")
+//    public static boolean useAspect()
+//    {
+//        return NewTest.isUseAspect();
+//    }
 
-    @Pointcut("call(public String classes.B.getB())")
+    @Pointcut("execution(* classes.B.getB())")
     public void callTestMethod() {}
 
     /*@Pointcut("call(* *(..)) && !within(AspectB)")
@@ -28,9 +28,9 @@ public class AspectB {
     }*/
 
 
-    @Around("useAspect() && callTestMethod()")
-    public String myAdvice(ProceedingJoinPoint point)
-    {
+    @Around("callTestMethod()")
+    public Object myAdvice(ProceedingJoinPoint point) throws Throwable {
+        point.proceed();
         return "You have been hacked!";
     }
 }

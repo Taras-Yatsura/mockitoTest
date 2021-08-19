@@ -12,7 +12,7 @@
         <maven.compiler.source>11</maven.compiler.source>
         <maven.compiler.target>11</maven.compiler.target>
         <mockito.version>3.11.2</mockito.version>
-        <aspectj.version>1.9.8.M1</aspectj.version>
+        <aspectj.version>1.9.7</aspectj.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
@@ -64,6 +64,9 @@
                         <version>1.3.2</version>
                     </dependency>
                 </dependencies>
+                <configuration>
+                    <argLine>-javaagent:${user.home}/.m2/repository/org/aspectj/aspectjweaver/${aspectj.version}/aspectjweaver-${aspectj.version}.jar</argLine>
+                </configuration>
             </plugin>
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
@@ -81,6 +84,7 @@
                 <executions>
                     <execution>
                         <goals>
+<!--                            <goal>compile</goal>-->
                             <!-- use this goal to weave all your main classes -->
                             <!--<goal>compile</goal>-->
                             <!-- use this goal to weave all your test classes -->
